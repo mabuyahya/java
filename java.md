@@ -29,6 +29,12 @@
 - in java there is no need to manually free the memory allocated to objects, java has an automatic garbage collector that takes care of freeing memory that is no longer needed
 - all classes derive from the Object class by default.
 
+``` java
+Person p = new Person("Alice");
+```
+even though p looks like a regular variable, it’s really just holding a reference (a managed pointer), and the object is always on the heap.
+and when passing p as an argument  a copy of the pointer (address) is passed — not a copy of the object.
+
 ### java functions
 - in java functions are called methods and they are always defined inside a class
 - in java no need to forward declare methods before using them
@@ -40,3 +46,5 @@
 - the java standard library is organized into packages, such as java.lang, java.util, and java.io, each containing related classes and interfaces
 - to use a class from a package, you need to import it using the 'import' statement
 - you can create your own packages by using the 'package' keyword at the beginning of your source file.
+
+### Strings
