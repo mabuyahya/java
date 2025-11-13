@@ -1,4 +1,6 @@
+
 ### java VS c++
+the main differences that the java uses a virtual machine (JVM) to run the code which makes big difference also java is a fully object-oriented language.
 - Java is a high-level, object-oriented programming language developed by Sun Microsystems (now owned by Oracle) in 1995.
 - C++ is a general-purpose programming language that was developed by Bjarne Stroustrup at Bell Labs in 1979.
 - Java is platform-independent at the source and binary levels, while C++ is platform-dependent.
@@ -28,6 +30,10 @@
 - all the objects in java are created using the 'new' keyword, unlike primitive data types which can be created without using 'new' 
 - in java there is no need to manually free the memory allocated to objects, java has an automatic garbage collector that takes care of freeing memory that is no longer needed
 - all classes derive from the Object class by default.
+in java:
+No header files → no need for separate declaration/definition
+Everything is in .java file — both interface and implementation
+Compilation model is different: JVM uses bytecode, not direct linking
 
 ``` java
 Person p = new Person("Alice");
@@ -69,3 +75,29 @@ what if a want to create a string and don't want to use the string pool?
 String str = new String("Hello"); // String object not in string pool
 ```
 here the java compiler creates a new String object in the heap memory regardless of whether a string with the same value already exists in the string pool or not. what is really happening here is that the java compiler first creates a string literal "Hello" in the string pool (if it doesn't already exist), then it calls the String constructor to create a new String object in the heap memory and copies the contents of the string literal into that object.
+
+### arrays in java
+in c++ arrays can be created in the stack or in the heap.(in the end array variable are just pointers to a block of memory)
+in java the array variable is a reference to an array object in the heap memory(an object is created in the heap because this is how java creates object).
+this object contains the array elements and some metadata about the array (such as its length).
+``` java
+int[] arr = new int[5]; // array object in heap
+```
+here the java compiler creates an array object in the heap memory that can hold 5 integers and returns a reference to that object.
+
+### Packages in java
+packages in java are similar to namespaces in c++. but with enforces sturcture on the file system.
+in c++ namespaces are used to group related classes, functions, and variables together to avoid naming conflicts.
+in java packages are used to group related classes and interfaces together, providing a namespace management mechanism.
+packages in java also enforce a directory structure on the file system. for example if we have a package named com.example.myapp, the corresponding directory structure would be com/example/myapp.
+``` java
+package com.example.myapp;
+```
+
+### access specifiers in java
+- public: The member is accessible from any other class.
+- protected: The member is accessible within its own package and by subclasses.
+- default (no modifier): The member is accessible only within its own package.
+- private: The member is accessible only within its own class.
+- static: The member belongs to the class rather than to any specific instance of the class.(getting created once and shared among all instances of the class)
+- static methods can be called without creating an instance of the class. (static methods cannot access instance variables or methods directly; they can only access static variables and methods)
