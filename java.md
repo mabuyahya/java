@@ -48,3 +48,24 @@ and when passing p as an argument  a copy of the pointer (address) is passed —
 - you can create your own packages by using the 'package' keyword at the beginning of your source file.
 
 ### Strings
+in c++ when we create a string using double quotes, it creates a string literal which is stored in a read-only section of memory. Modifying a string literal results in undefined behavior.
+``` c++
+char* str = "Hello"; // string literal
+``` 
+also in c++ there are a srting class in the standard library that can be used to create strings.
+``` c++
+#include <string>
+std::string str = "Hello"; // string object
+```
+here the c++ compiler buted "hello" in a read-only section of memory then called the string constructor (this constructor allocates memory on the heap and copies the contents of the string literal into that memory)
+in java everything is different, in java when we create a string using double quotes, it creates a String object and stores it in the heap memory in a special area called the string pool. when using a string literal in c++ the compiler creates a array of characters in a read-only section of memory, but in java the compiler creates a String object in the heap memory. and return a reference to that object.
+``` java
+String str = "Hello"; // String object
+```
+first the java compiler checks the string pool to see if a string with the same value already exists. If it does, it simply returns a reference to that existing string. If not, it creates a new String object in the heap memory and adds it to the string pool.
+no constructor is called here because the java compiler automatically creates the String object for us when we use double quotes.
+what if a want to create a string and don't want to use the string pool?
+``` java
+String str = new String("Hello"); // String object not in string pool
+```
+here the java compiler creates a new String object in the heap memory regardless of whether a string with the same value already exists in the string pool or not. what is really happening here is that the java compiler first creates a string literal "Hello" in the string pool (if it doesn't already exist), then it calls the String constructor to create a new String object in the heap memory and copies the contents of the string literal into that object.
