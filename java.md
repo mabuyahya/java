@@ -101,3 +101,78 @@ package com.example.myapp;
 - private: The member is accessible only within its own class.
 - static: The member belongs to the class rather than to any specific instance of the class.(getting created once and shared among all instances of the class)
 - static methods can be called without creating an instance of the class. (static methods cannot access instance variables or methods directly; they can only access static variables and methods)
+
+### inheritance in java
+Inheritance allows one class (subclass / derived class) to reuse fields and methods from another class (superclass / base class)
+in java, only single inheritance is allowed for classes, not like c++ where multiple inheritance is allowed(and the diamond problem may occur).
+use extends keyword to inherit from a class.
+all methods are virtual by default in java, so no need to use virtual keyword.(which makes polymorphism easier to implement).
+the base class constructor must be called explicitly using super() in the derived class constructor.
+``` java
+class Animal {
+    int age;
+    void printAge() {
+        System.out.println("Animal age: " + age);
+    }
+}
+
+class Dog extends Animal {
+    int breed;
+    void printBreed() {
+        System.out.println("Dog breed: " + breed);
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Dog myDog = new Dog();
+        myDog.printAge();
+        myDog.printBreed();
+    }
+}
+```
+first we have a base class Animal which has the age field and the printAge(Animal *age) method.
+second we have a derived class Dog which inherits from Animal using the extends keyword. Dog has its own field breed and method printBreed().
+when a class inherits from another class, what is really happening that when creating an object of the derived class also the base class filds get created as well and comes first before the derived class fields in the memory layout of the object.
+so when we create an object of Dog, it contains both the age field from Animal and the breed field from Dog.
+and the drived class can access the base class methods directly.(because the amimal part of the object is there in the dog object and comes first so the this method printAge(Animal *age) works when the dog object calls it because the dog object contains the animal part).
+
+### polymorphism in java
+polymorphism allows methods to do different things based on the object not in the variable that the object is stored in.
+in java all methods are virtual by default, so no need to use the virtual keyword like in c++.
+to override a method in the derived class, simply define a method with the same name and signature in the derived class.
+``` java
+class Animal {
+    void sound() {
+        System.out.println("Animal sound");
+    }
+}
+
+class Dog extends Animal {
+    @Override
+    void sound() {
+        System.out.println("Dog barks");
+    }
+}
+
+class Cat extends Animal {
+    @Override
+    void sound() {
+        System.out.println("Cat meows");
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Animal myAnimal;
+        myAnimal = new Dog();
+        myAnimal.sound();
+        myAnimal = new Cat();
+        myAnimal.sound();
+    }
+}
+```
+here we have a base class Animal with a method sound().
+we have two derived classes Dog and Cat that override the sound() method to provide their own implementations.
+in the main method, we create a reference variable of type Animal and assign it to different derived class objects (Dog and Cat).
+when we call the sound() method on the myAnimal reference, the appropriate overridden method is invoked based on the actual object type (Dog or Cat) at runtime, demonstrating polymorphism.
