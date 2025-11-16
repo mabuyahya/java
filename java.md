@@ -176,3 +176,52 @@ here we have a base class Animal with a method sound().
 we have two derived classes Dog and Cat that override the sound() method to provide their own implementations.
 in the main method, we create a reference variable of type Animal and assign it to different derived class objects (Dog and Cat).
 when we call the sound() method on the myAnimal reference, the appropriate overridden method is invoked based on the actual object type (Dog or Cat) at runtime, demonstrating polymorphism.
+
+### abstract classes and interfaces in java
+in java comes the concept of abstract classes when we want to define a class that will be used as a base class for other classes but we don't want to create objects from it, and you want a certain function in this class to be implemented by derived classes(must be overridden).
+if you make a class with the abstract keyword then this abstract class cannot be instantiated and the abstract functions must be implemented by derived classes. and the other functions in the abstract class can have implementations, and the derived classes use these implementations if they want.
+and we use the abstract classes to achieve polymorphism and if you want a class to be meant to be inherited from.
+``` java
+abstract class AbstractClass {
+    abstract void abstractMethod(); // Abstract method
+    void normalMethod() {
+        System.out.println("Normal method in abstract class");
+    }
+}
+class DerivedClass extends AbstractClass {
+    @Override
+    void abstractMethod() {
+        System.out.println("Derived class implementation of abstract method");
+    }
+}
+class Main {
+    public static void main(String[] args) {
+        AbstractClass obj;
+        obj = new DerivedClass();
+        obj.abstractMethod(); // Output: Derived class implementation of abstract method
+        obj.normalMethod(); // Output: Normal method in abstract class
+    }
+}
+```
+
+an interface is a class that has functions and no data members. which means that the use of this class is not for inheritance of data members or function implementations but only for defining a contract that the derived classes must implement.
+``` java
+interface MyInterface {
+    void interfaceMethod(); // Interface method
+}
+class ImplementingClass implements MyInterface {
+    @Override
+    public void interfaceMethod() {
+        System.out.println("Implementation of interface method");
+    }
+}
+class Main {
+    public static void main(String[] args) {
+        MyInterface obj;
+        obj = new ImplementingClass();
+        obj.interfaceMethod(); // Output: Implementation of interface method
+    }
+}
+```
+the whole idea of a abstract classes is for no instantiation and if a function is abstract class it must be overridden in the derived class.(the abstract class can be inherited from and can have data and functions).
+the whole idea of an interface is to define a class that the only purpose is to force the derived classes to implement certain functions. (interfaces cannot have any implementation or data).
