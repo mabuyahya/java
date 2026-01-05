@@ -30,10 +30,11 @@ the main differences that the java uses a virtual machine (JVM) to run the code 
 - all the objects in java are created using the 'new' keyword, unlike primitive data types which can be created without using 'new' 
 - in java there is no need to manually free the memory allocated to objects, java has an automatic garbage collector that takes care of freeing memory that is no longer needed
 - all classes derive from the Object class by default.
-in java:
+- in java:
 No header files → no need for separate declaration/definition
 Everything is in .java file — both interface and implementation
 Compilation model is different: JVM uses bytecode, not direct linking
+- in java the protected access specifier allows access within the same package and subclasses, unlike c++ where it allows access only within the same class and derived classes.
 
 ``` java
 Person p = new Person("Alice");
@@ -108,6 +109,11 @@ in java, only single inheritance is allowed for classes, not like c++ where mult
 use extends keyword to inherit from a class.
 all methods are virtual by default in java, so no need to use virtual keyword.(which makes polymorphism easier to implement).
 the base class constructor must be called explicitly using super() in the derived class constructor.
+- in java the protected access specifier allows access within the same package and subclasses, unlike c++ where it allows access only within the same class and derived classes.
+-  Constructors are not inherited in Java.
+- The first task of a subclass constructor is to call its direct superclass’s
+constructor implicitly(if you didn't call the constructor the java will call the default constructor like c++) or explicitly (using super()).
+- It’s a compilation error to override a method with amore restricted access modifier.
 ``` java
 class Animal {
     int age;
